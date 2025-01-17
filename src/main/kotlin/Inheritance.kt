@@ -1,19 +1,55 @@
 package org.example
 
-open class Animal {
-    var numberOfPaws: Int? = null
-    var height: Int? = null
-    var width: Int? = null
-    var isFurAvailable: Boolean? = null
+// ДЗ
+open class Employee {
+    open val baseSalary: Double = 1000.0
+
+    open fun showDetails() {
+        println("I am an Employee")
+    }
 }
 
-class Cat: Animal() {
+open class Developer: Employee() {
+    override val baseSalary: Double
+        get() = super.baseSalary * 1.3
+    private var isRemote: Boolean = true
 
+    override fun showDetails() {
+        super.showDetails()
+        println("Developer with baseSalary: $baseSalary")
+    }
 }
 
-class Snake {
-    var numberOfPaws: Int? = 0
-    var height: Int? = 10
-    var width: Int? = 200
-    var isFurAvailable: Boolean? = false
+class MobileDeveloper: Developer() {
+    override val baseSalary: Double
+        get() = super.baseSalary + 1000.0
+
+    override fun showDetails() {
+        super.showDetails()
+        println("Mobile")
+    }
+}
+
+class WebDeveloper: Developer() {
+    override val baseSalary: Double
+        get() = super.baseSalary + 500.0
+
+    override fun showDetails() {
+        super.showDetails()
+        println("Web")
+    }
+}
+
+fun main() {
+//    val employee = Employee()
+//    employee.showDetails()
+//    val developer = Developer()
+//    developer.showDetails()
+    val mobileDeveloper = MobileDeveloper()
+//    mobileDeveloper.showDetails()
+    val webDeveloper = WebDeveloper()
+//    webDeveloper.showDetails()
+
+    val developers = listOf(mobileDeveloper, webDeveloper)
+    developers.forEach { it.showDetails() }
 }

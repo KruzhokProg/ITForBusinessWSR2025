@@ -12,18 +12,18 @@ open class Employee {
 open class Developer: Employee() {
     override val baseSalary: Double
         get() = super.baseSalary * 1.3
-    private var isRemote: Boolean = true
+    protected open var isRemote: Boolean = true
 
     override fun showDetails() {
         super.showDetails()
-        println("Developer with baseSalary: $baseSalary")
+        println("Developer with baseSalary: $baseSalary and isRemote: $isRemote")
     }
 }
 
 class MobileDeveloper: Developer() {
     override val baseSalary: Double
         get() = super.baseSalary + 1000.0
-
+    override var isRemote: Boolean = false
     override fun showDetails() {
         super.showDetails()
         println("Mobile")
@@ -43,7 +43,7 @@ class WebDeveloper: Developer() {
 fun main() {
 //    val employee = Employee()
 //    employee.showDetails()
-//    val developer = Developer()
+    val developer = Developer()
 //    developer.showDetails()
     val mobileDeveloper = MobileDeveloper()
 //    mobileDeveloper.showDetails()
